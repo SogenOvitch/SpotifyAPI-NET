@@ -10,6 +10,8 @@ namespace SpotifyAPI.Web
 {
   public class OAuthClient : APIClient, IOAuthClient
   {
+    public static Uri OAuthToken { get; set; } = SpotifyUrls.OAuthToken;
+
     public OAuthClient() : this(SpotifyClientConfig.CreateDefault()) { }
     public OAuthClient(IAPIConnector apiConnector) : base(apiConnector) { }
 
@@ -261,7 +263,7 @@ namespace SpotifyAPI.Web
     {
       var headers = BuildAuthHeader(clientId, clientSecret);
 #pragma warning disable CA2000
-      return apiConnector.Post<T>(SpotifyUrls.OAuthToken, null, new FormUrlEncodedContent(form), headers, cancel);
+      return apiConnector.Post<T>(OAuthToken, null, new FormUrlEncodedContent(form), headers, cancel);
 #pragma warning restore CA2000
     }
 
