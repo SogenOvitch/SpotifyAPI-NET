@@ -12,7 +12,10 @@ namespace SpotifyAPI.Web
   {
     public static Uri OAuthToken { get; set; } = SpotifyUrls.OAuthToken;
 
-    public OAuthClient() : this(SpotifyClientConfig.CreateDefault()) { }
+    public OAuthClient(Uri oAuthToken) : this(SpotifyClientConfig.CreateDefault())
+    {
+      OAuthToken = oAuthToken;
+    }
     public OAuthClient(IAPIConnector apiConnector) : base(apiConnector) { }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062")]
